@@ -5,9 +5,7 @@ const Sugg = (props) => {
     console.log(props);
     const options = props.searchedList.map((company, i) => (
         <div key={i} >
-          <h1>{company.name}</h1>
-          <img src={company.logo} alt="logo" />
-          <h3>{company.domain}</h3>
+        <p onClick={() => this.props.onClick(this.props)}>{company.name}</p>
         </div>
     ))
     console.log(options);

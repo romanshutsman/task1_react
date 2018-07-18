@@ -8,10 +8,11 @@ class Search extends Component {
     super(props);
     this.onSearch = this.onSearch.bind(this);
     this.handleClickedItem = this.handleClickedItem.bind(this);
+    this.onClick = this.onClick.bind(this);
     this.state = {
       companies: [],
       searchedList: [],
-      query: ''
+      value: ''
     }
  }
  componentDidMount() {
@@ -63,6 +64,11 @@ class Search extends Component {
   handleClickedItem(data) {
     console.log(data);
   }
+
+  onClick = e => {
+    console.log(e.target.value)
+    this.setState({ value: e.target.value});
+  };
   render() {
     return (
       <div className="Search">
@@ -75,8 +81,9 @@ class Search extends Component {
           placeholder="Search for..."
           ref={input => this.search = input}
           onChange={this.handleInputChange}
+
         />
-        <Sugg searchedList={this.state.searchedList}   />
+          <Sugg searchedList={this.state.searchedList} onClick={this.onClick.bind(this)} />
       </form>
       </div>
     );
