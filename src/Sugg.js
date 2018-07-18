@@ -1,15 +1,21 @@
-import React from 'react';
-
-
-const Sugg = (props) => {
-    console.log(props);
-    const options = props.searchedList.map((company, i) => (
-        <div key={i} >
-        <p onClick={() => this.props.onClick(this.props)}>{company.name}</p>
-        </div>
-    ))
-    console.log(options);
-    return <div >{options}</div>
+import React, { Component } from "react";
+class Sugg extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      company: props.company
+    };
   }
-
+  onClick = () => {
+    console.log(this.state.company);
+    this.props.onClick(this.state.company.name);
+  };
+  render() {
+    return (
+      <div>
+        <p onClick={this.onClick}>{this.state.company.name}</p>
+      </div>
+    );
+  }
+}
 export default Sugg;
