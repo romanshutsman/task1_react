@@ -15,11 +15,11 @@ class Search extends Component {
     };
   }
   componentDidMount() {
-    this.fetchApi();
+    // this.fetchApi();
   }
-  fetchApi = () => {
+  fetchApi = (searchText) => {
     const url =
-      "https://autocomplete.clearbit.com/v1/companies/suggest?query={companyName}";
+    `https://autocomplete.clearbit.com/v1/companies/suggest?query={${searchText}}`;
     fetch(url)
       .then(response => {
         let myData = response.json();
@@ -34,6 +34,7 @@ class Search extends Component {
 
   handleInputChange = event => {
     let searchText = event.target.value.toLowerCase();
+    this.fetchApi(searchText);
     let searched = [];
     if (searchText == '') {
       this.setState({searchedCompanyName: ''})
